@@ -39,7 +39,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 
     ```elixir
     def deps do
-      [{:ex_unit_let, "~> 0.1.0"}]
+      [{:ex_unit_let, "~> 0.1.0", only: :test}]
     end
     ```
 
