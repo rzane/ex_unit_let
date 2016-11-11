@@ -33,20 +33,10 @@ It's not buying you much other than visual greppability.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add `ex_unit_let` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `ex_unit_let` to your list of dependencies in `mix.exs`:
 
     ```elixir
     def deps do
       [{:ex_unit_let, "~> 0.1.0", only: :test}]
-    end
-    ```
-
-  2. Ensure `ex_unit_let` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:ex_unit_let]]
     end
     ```
