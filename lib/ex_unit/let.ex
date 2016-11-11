@@ -16,11 +16,16 @@ defmodule ExUnit.Let do
 
   defp do_let(name, var, block) do
     quote bind_quoted: [name: name, var: escape(var), block: escape(block)] do
+      # Generate a secret sequential function name
       let_name   = :"__ex_unit_let_#{length(@ex_unit_let)}"
+
+      # Track the number of lets
       @ex_unit_let [let_name | @ex_unit_let]
 
+      # Define a function that takes context as an argument
       defp unquote(let_name)(unquote(var)), unquote(block)
 
+      # Call that function and merge in it's value
       setup context do
         {:ok, Map.put(context, unquote(name), unquote(let_name)(context))}
       end
