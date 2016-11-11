@@ -7,6 +7,8 @@ defmodule ExUnitLet.Mixfile do
      elixir: "~> 1.3",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     description: "A simple let macro for ExUnit.",
+     package: package(),
      deps: deps()]
   end
 
@@ -27,6 +29,13 @@ defmodule ExUnitLet.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:ex_doc, ">= 0.0.0", only: :dev}]
+  end
+
+  defp package do
+    [files: ["lib", "config", "mix.exs", "README.md", "LICENSE.txt"],
+     maintainers: ["Ray Zane"],
+     licenses: ["MIT"],
+     links: %{"GitHub" => "https://github.com/rzane/ex_unit_let"}]
   end
 end
