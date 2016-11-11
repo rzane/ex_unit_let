@@ -17,17 +17,13 @@ defmodule ExUnit.Let do
   defp do_let(name, var, block) do
     quote bind_quoted: [name: name, var: escape(var), block: escape(block)] do
       let_name   = :"__ex_unit_let_#{length(@ex_unit_let)}"
-      setup_name = :"#{let_name}_setup"
-
-      @ex_unit_let [{let_name, setup_name} | @ex_unit_let]
+      @ex_unit_let [let_name | @ex_unit_let]
 
       defp unquote(let_name)(unquote(var)), unquote(block)
 
-      defp unquote(setup_name)(context) do
+      setup context do
         {:ok, Map.put(context, unquote(name), unquote(let_name)(context))}
       end
-
-      setup setup_name
     end
   end
 
